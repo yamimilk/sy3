@@ -15,21 +15,17 @@ public class SpringTest {
     public void testSpring(){
         ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
         DepartmentDao departmentDao = (DepartmentDao) context.getBean("departmentDao");
-//        DepartmentService.findAll();
-//        List<Department>departments = departmentService.findAll();
-//        if (departments != null){
-//            for (Department department:departments){
-//                System.out.println(department);
-//            }
-//        }else {
-//            System.out.println("no found");
-//        }
 
-      Department department = departmentDao.findById(1);
-        System.out.println(department);
+//      Department department = departmentDao.findById(1);
+//        System.out.println(department);
 //        departmentService.hello();
-      List<Department> findall =departmentDao.findAll();
-        System.out.println(findall);
+//      List<Department> findall =departmentDao.findAll();
+//        System.out.println(findall);
+//        int addTest = departmentDao.add(new Department( "test", "1999"));
+//        System.out.println(addTest);
+        int mod = departmentDao.mod(new Department( "testModMod", "1999"));
+//        System.out.println(mod);
+
 
     }
 }

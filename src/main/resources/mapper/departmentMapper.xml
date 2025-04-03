@@ -17,10 +17,10 @@
     </insert>
 
     <update id="mod" parameterType="cdu.zjy.model.Department">
-        update department set name=#{name},number=#{number} where id=#{id}
+        update department set name=#{name} where number=#{number}
     </update>
 
     <delete id="del" parameterType="int">
-        delete from department where id=#{id}
+        delete from department where number=#{number}
     </delete>
 </mapper>

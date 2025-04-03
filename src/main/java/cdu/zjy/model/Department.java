@@ -7,18 +7,9 @@ public class Department implements Serializable {
     private String name;
     private String number;
 
-    public Department(Integer id, String name, String number) {
-        this.id = id;
+    public Department( String name, String number) {
         this.name = name;
         this.number = number;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -40,7 +31,6 @@ public class Department implements Serializable {
     @Override
     public String toString() {
         return "Department{" +
-                "id=" + id +
                 ",name='" +name + '\'' +
                 ",password='" + number + '\'' +
                 '}';
