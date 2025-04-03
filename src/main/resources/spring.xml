@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
+       xsi:schemaLocation="
+    http://www.springframework.org/schema/beans
+    https://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    https://www.springframework.org/schema/context/spring-context.xsd
+    http://mybatis.org/schema/mybatis-spring
+    https://mybatis.org/schema/mybatis-spring.xsd">
+
+
+<context:component-scan base-package="cdu.zjy">
+        <context:exclude-filter type="annotation"
+                                expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+    <!-- 指定数据源配置文件 -->
+    <context:property-placeholder location="classpath:db.properties" ignore-unresolvable="true"/>
+
+    <mybatis:scan base-package="cdu.zjy.dao"/>
+
+    <!-- 配置数据源（数据库连接池） -->
+    <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource">
+        <property name="driverClassName" value="${datasource.driverClassName}"/>
+        <property name="jdbcUrl" value="${datasource.url}"/>
+        <property name="username" value="${datasource.username}"/>
+        <property name="password" value="${datasource.password}"/>
+        <property name="connectionTimeout" value="${datasource.hikari.connection-timeout}"/>
+        <property name="idleTimeout" value="${datasource.hikari.idle-timeout}"/>
+        <property name="maxLifetime" value="${datasource.hikari.max-lifetime}"/>
+        <property name="maximumPoolSize" value="${datasource.hikari.maximum-pool-size}"/>
+        <property name="minimumIdle" value="${datasource.hikari.minimum-idle}"/>
+        <property name="connectionTestQuery" value="${datasource.hikari.connection-test-query}"/>
+        <property name="autoCommit" value="true"/>
+    </bean>
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="mapperLocations" value="classpath:mapper/*.xml"/>
+    </bean>
+
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg ref="sqlSessionFactory"/>
+    </bean>
+
+    <bean id="mapperScan" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+        <property name="basePackage" value="cdu.zjy.dao"/>
+    </bean>
+
+</beans>
