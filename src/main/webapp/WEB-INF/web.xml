@@ -9,10 +9,15 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:spring.xml</param-value>
     </context-param>
-    <!--    加载spring容器-->
+
+    <!-- 加载 Spring 容器：加载 spring.xml -->
     <listener>
-        <listener-class>org.springframework.web.context.ContextCleanupListener</listener-class>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
+    <!--    加载Spring关闭时清理资源的监听器-->
+<!--    <listener>-->
+<!--        <listener-class>org.springframework.web.context.ContextCleanupListener</listener-class>-->
+<!--    </listener>-->
 
     <!--    配置springMVC的拦截器-->
     <servlet>

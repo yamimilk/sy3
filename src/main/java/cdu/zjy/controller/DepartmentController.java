@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class DepartmentController {
     @Resource
     DepartmentService departmentService;
-//    @GetMapping("/list")
-//    public String list(Model model){
-//        model.addAttribute("departmentList",departmentService.findAll());
-//        return "department_list";
-//    }
+    @GetMapping("/list")
+    public String list(Model model){
+        model.addAttribute("departmentList",departmentService.findAll());
+        return "department_list";
+    }
 }

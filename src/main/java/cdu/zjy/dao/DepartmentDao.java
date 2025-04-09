@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Mapper
+//@Mapper
 public interface DepartmentDao {
     Department findById(int id);
     List<Department> findAll();
