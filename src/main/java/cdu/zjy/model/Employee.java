@@ -2,26 +2,15 @@ package cdu.zjy.model;
 
 import java.io.Serializable;
 
-public class Employee implements Serializable {
+public class Employee extends Pager {
 
     private Integer id;
     private String number;
     private String name;
     private String gender;
     private Integer age;
-    private Integer dep_id;
+    private Department dep;
 
-//    public Employee(String number, String name, String gender, Integer age) {
-////        this.id = id;
-//        this.number = number;
-//        this.name = name;
-//        this.gender = gender;
-//        this.age = age;
-////        this.dep_id = dep_id;
-//    }
-//
-//    public Employee() {
-//    }
 
     @Override
     public String toString() {
@@ -31,7 +20,7 @@ public class Employee implements Serializable {
                 ", name='" + name + '\'' +
                 ", gender='" + gender + '\'' +
                 ", age=" + age +
-                ", dep_id=" + dep_id +
+                ", dep_id=" + dep +
                 '}';
     }
 
@@ -76,11 +65,11 @@ public class Employee implements Serializable {
         this.age = age;
     }
 
-    public Integer getDep_id() {
-        return dep_id;
+    public Department getDep() {
+        return dep;
     }
 
-    public void setDep_id(Integer dep_id) {
-        this.dep_id = dep_id;
+    public void setDep(Department dep) {
+        this.dep = dep;
     }
 }

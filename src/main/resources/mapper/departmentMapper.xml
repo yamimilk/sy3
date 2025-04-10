@@ -4,23 +4,55 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cdu.zjy.dao.DepartmentDao">
-    <select id="findAll" resultType="cdu.zjy.model.Department">
-        select * from department
+    <resultMap id="depWithEmpMap" type="cdu.zjy.model.Department">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="number" column="number"/>
+        <collection property="employees" ofType="cdu.zjy.model.Employee">
+            <id property="id" column="empId"/>
+            <result property="name" column="empName"/>
+            <result property="number" column="empNumber"/>
+            <result property="age" column="age"/>
+            <result property="gender" column="gender"/>
+        </collection>
+    </resultMap>
+
+    <select id="findById" resultMap="depWithEmpMap">
+        SELECT d.*,e.id empId,e.name empName,e.number empNumber,e.*
+        FROM department d
+                 LEFT JOIN employee e
+                           ON d.id=e.dep_id
+        WHERE d.id=#{id}
     </select>
 
-    <select id="findById" resultType="cdu.zjy.model.Department">
-        SELECT * FROM department WHERE id = #{id}
+    <select id="findAll" resultType="cdu.zjy.model.Department">
+        SELECT * FROM department
+    </select>
+
+    <select id="find" resultType="cdu.zjy.model.Department">
+        SELECT * FROM department
+        WHERE 1=1
+        <if test="name!=null and name!=''">
+            AND name LIKE concat('%',#{name},'%')
+        </if>
+        <if test="number!=null and number!=''">
+            AND number=#{number}
+        </if>
     </select>
 
     <insert id="add" parameterType="cdu.zjy.model.Department">
-        insert into department(name,number) values (#{name},#{number})
+        INSERT INTO department(name,number)
+        VALUES(#{name},#{number})
     </insert>
 
     <update id="mod" parameterType="cdu.zjy.model.Department">
-        update department set name=#{name} where number=#{number}
+        UPDATE department
+        SET name=#{name},number=#{number}
+        WHERE id=#{id}
     </update>
 
-    <delete id="del" parameterType="int">
-        delete from department where number=#{number}
+    <delete id="del">
+        DELETE FROM department
+        WHERE id=#{id}
     </delete>
 </mapper>

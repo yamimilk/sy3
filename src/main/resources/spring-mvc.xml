@@ -10,16 +10,24 @@
          http://www.springframework.org/schema/mvc
        https://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-    <context:component-scan base-package="cdu.zjy"  >
+    <!--    自动检测控制器类-->
+    <context:component-scan base-package="cdu.zjy">
         <!--        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>-->
     </context:component-scan>
 
-<!--    <bean id="departmentService" class="cdu.zjy.service.DepartmentService"/>-->
+    <!--    <bean id="departmentService" class="cdu.zjy.service.DepartmentService"/>-->
 
     <!-- 启用控制类中的注解 -->
     <mvc:annotation-driven/>
 
-    <!-- 配置视图层 -->
+    <!--    配置静态资源-->
+    <mvc:resources mapping="/static/**" location="/html/,/img/"/>
+    <mvc:resources mapping="/bootstrap/**" location="/bootstrap/"/>
+    <mvc:resources mapping="/css/**" location="/css/"/>
+    <mvc:resources mapping="/js/**" location="/js/"/>
+
+
+    <!-- 配置视图层解析器 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
         <property name="prefix" value="/WEB-INF/views/"/>

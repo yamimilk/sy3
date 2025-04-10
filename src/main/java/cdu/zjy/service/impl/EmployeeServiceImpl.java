@@ -14,27 +14,27 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Autowired
     EmployeeDao employeeDao;
     @Override
-    public List<Employee> findAll() {
-        return employeeDao.findAll();
+    public List<Employee> query(Employee condition) {
+        return employeeDao.find(condition);
     }
 
     @Override
-    public Employee findByNumber(String number) {
-        return employeeDao.findByNumber(number);
+    public Employee get(int id) {
+        return employeeDao.findById(id);
     }
 
     @Override
     public boolean add(Employee employee) {
-        return false;
+        return employeeDao.add(employee) == 1;
     }
 
     @Override
     public boolean mod(Employee newemployee) {
-        return false;
+        return employeeDao.mod(newemployee) == 1;
     }
 
     @Override
     public boolean del(int id) {
-        return false;
+        return employeeDao.del(id) == 1;
     }
 }

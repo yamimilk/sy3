@@ -7,8 +7,9 @@ import java.util.List;
 
 @Repository
 public interface EmployeeDao {
-    List<Employee> findAll();
-    Employee findByNumber(String number);
+    Employee findById(int id);
+    List<Employee> find(Employee condition);
+
     int add(Employee employee);
     int mod(Employee employee);
     int del(int id);

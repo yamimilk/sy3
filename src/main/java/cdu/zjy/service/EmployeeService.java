@@ -7,9 +7,10 @@ import java.util.List;
 
 @Service
 public interface EmployeeService {
-    List<Employee> findAll();
 
-    Employee findByNumber(String number);
+    Employee get(int id);
+
+    List<Employee> query(Employee condition);
 
     boolean add(Employee employee);
     boolean mod(Employee newemployee);

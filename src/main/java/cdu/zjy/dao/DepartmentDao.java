@@ -9,6 +9,7 @@ import java.util.List;
 public interface DepartmentDao {
     Department findById(int id);
     List<Department> findAll();
+    List<Department> find(Department condition);
     int add(Department department);
     int mod(Department department);
     int del(int department);

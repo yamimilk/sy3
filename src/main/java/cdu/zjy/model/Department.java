@@ -1,16 +1,20 @@
 package cdu.zjy.model;
 
-import java.io.Serializable;
+import java.util.List;
 
-public class Department implements Serializable {
+public class Department extends Pager {
     private Integer id;
     private String name;
     private String number;
+    private List<Employee> employees;
 
-//    public Department( String name, String number) {
-//        this.name = name;
-//        this.number = number;
-//    }
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -28,10 +32,18 @@ public class Department implements Serializable {
         this.number = number;
     }
 
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
+    }
+
     @Override
     public String toString() {
         return "Department{" +
-                ",name='" +name + '\'' +
+                ",name='" + name + '\'' +
                 ",password='" + number + '\'' +
                 '}';
     }

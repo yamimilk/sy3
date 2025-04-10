@@ -18,7 +18,7 @@ public class SpringTest {
         ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
         DepartmentDao departmentDao = (DepartmentDao) context.getBean("departmentDao");
 
-//      Department department = departmentDao.findById(1);
+//      Department department = departmentDao.get(1);
 //        System.out.println(department);
       List<Department> departmentList =departmentDao.findAll();
         System.out.println(departmentList);

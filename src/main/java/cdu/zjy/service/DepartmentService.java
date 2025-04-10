@@ -11,9 +11,10 @@ public interface DepartmentService {
 //    public static void hello(){
 //        System.out.println("try");
 //    }
-    List<Department> findAll();
+    List<Department> list();
 
-    Department findById(int id);
+    List<Department> query(Department condition);
+    Department get(int id);
 
     boolean add(Department department);
 

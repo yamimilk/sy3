@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--MyBatis配置文件-->
+<configuration>
+    <settings>
+        <!--  在控制台打印输出sql语句及执行结果-->
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+    </settings>
+
+    <plugins>
+        <!-- 为 MyBatis 配置分页插件 PageHelper -->
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <!-- 指定分页插件使用哪种方言 -->
+            <property name="helperDialect" value="mysql"/>
+            <property name="rowBoundsWithCount" value="true"/>
+
+        </plugin>
+    </plugins>
+</configuration>

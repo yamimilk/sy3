@@ -3,31 +3,68 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cdu.zjy.dao.EmployeeDao">
-<!--    <resultMap id="employeeMap" type="cdu.zjy.model.Employee">-->
-<!--        <result property="number" column="number" jdbcType="VARCHAR"/>-->
-<!--        <result property="name" column="name" jdbcType="VARCHAR"/>-->
-<!--        <result property="gender" column="gender" jdbcType="VARCHAR"/>-->
-<!--        <result property="age" column="age" jdbcType="INTEGER"/>-->
-<!--    </resultMap>-->
+    <resultMap id="empWithDepMap" type="cdu.zjy.model.Employee">
+    <id property="id" column="id" />
+    <result property="name" column="name" />
+    <result property="number" column="number" />
+    <result property="gender" column="gender" />
+    <result property="age" column="age" />
+    <association property="dep" javaType="cdu.zjy.model.Department">
+        <id property="id" column="depId" />
+        <result property="name" column="depName" />
+        <result property="number" column="depNumber" />
+    </association>
+</resultMap>
 
-<!--    <select id="findAll" resultMap="employeeMap">-->
-    <select id="findAll" resultType="cdu.zjy.model.Employee">
-        select e.id,e.name,e.number,e.gender from employee e
+    <select id="findById" resultMap="empWithDepMap">
+        SELECT e.*,d.id depId,d.name depName,d.number depNumber
+        FROM employee e
+                 LEFT JOIN department d
+                           ON e.dep_id=d.id
+        WHERE e.id=#{id}
     </select>
 
-    <select id="findByNumber" resultType="cdu.zjy.model.Employee">
-        select * from employee where number = #{number}
+    <select id="findAll" resultMap="empWithDepMap">
+        SELECT e.*,d.id depId,d.name depName,d.number depNumber
+        FROM employee e
+                 LEFT JOIN department d
+                           ON e.dep_id=d.id
+    </select>
+
+    <select id="find" resultMap="empWithDepMap">
+        SELECT e.*,d.id depId,d.name depName,d.number depNumber
+        FROM employee e
+        LEFT JOIN department d
+        ON e.dep_id=d.id
+        WHERE 1=1
+        <if test="name!=null and name!='' ">
+            AND e.name LIKE concat('%',#{name},'%')
+        </if>
+        <if test="number!=null and number!=''">
+            AND e.number=#{number}
+        </if>
+        <if test="gender!=null and gender!=''">
+            AND gender=#{gender}
+        </if>
+        <if test="dep.id!=null and dep.id!=''">
+            AND e.dep_id=#{dep.id}
+        </if>
     </select>
 
     <insert id="add" parameterType="cdu.zjy.model.Employee">
-        insert into employee(number,name,gender,age) values (#{number},#{name},#{gender},#{age})
+        INSERT INTO employee(name,number,gender,age,dep_id)
+        VALUES(#{name},#{number},#{gender},#{age},#{dep.id})
     </insert>
 
     <update id="mod" parameterType="cdu.zjy.model.Employee">
-        update employee set name=#{name},gender=#{gender},age=#{age} where number=#{number}
+        UPDATE employee
+        SET name=#{name},number=#{number},gender=#{gender},age=#{age},dep_id=#{dep.id}
+        WHERE id=#{id}
     </update>
 
-    <delete id="del" parameterType="int">
-        delete from employee where number=#{number}
+    <delete id="del">
+        DELETE FROM employee
+        WHERE id=#{id}
     </delete>
+
 </mapper>
