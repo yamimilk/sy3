@@ -15,22 +15,21 @@ import java.util.List;
 public class SpringTest {
     @Test
     public void testSpring(){
-//        ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
-//        DepartmentDao departmentDao = (DepartmentDao) context.getBean("departmentDao");
+        ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
+        DepartmentDao departmentDao = (DepartmentDao) context.getBean("departmentDao");
 
 //      Department department = departmentDao.findById(1);
 //        System.out.println(department);
-//        departmentService.hello();
-//      List<Department> findall =departmentDao.findAll();
-//        System.out.println(findall);
+      List<Department> departmentList =departmentDao.findAll();
+        System.out.println(departmentList);
 //       int addTest = departmentDao.add(new Department( "testTwo", "197"));
- //       System.out.println(addTest);
+//        System.out.println(addTest);
 //        int mod = departmentDao.mod(new Department( "testModMod", "1999"));
 //        System.out.println(mod);
-
-        ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
-        EmployeeDao employeeDao = (EmployeeDao) context.getBean("employeeDao");
-        List<Employee> findAll = employeeDao.findAll();
-        System.out.println(findAll);
+//
+//        ApplicationContext contexte = new ClassPathXmlApplicationContext("spring.xml");
+//        EmployeeDao employeeDao = (EmployeeDao) contexte.getBean("employeeDao");
+//        List<Employee> findAll = employeeDao.findAll();
+//        System.out.println(findAll);
     }
 }

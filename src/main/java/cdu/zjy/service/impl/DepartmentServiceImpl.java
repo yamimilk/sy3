@@ -3,7 +3,6 @@ package cdu.zjy.service.impl;
 import cdu.zjy.dao.DepartmentDao;
 import cdu.zjy.model.Department;
 import cdu.zjy.service.DepartmentService;
-import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,9 +13,8 @@ import java.util.List;
 public class DepartmentServiceImpl implements DepartmentService {
 
 
-//    @Resource
     @Autowired
-    private  DepartmentDao departmentDao;
+    DepartmentDao departmentDao;
 
     @Override
     public List<Department> findAll(){ return departmentDao.findAll();}

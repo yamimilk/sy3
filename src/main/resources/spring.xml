@@ -2,25 +2,19 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
        xsi:schemaLocation="
     http://www.springframework.org/schema/beans
     https://www.springframework.org/schema/beans/spring-beans.xsd
     http://www.springframework.org/schema/context
-    https://www.springframework.org/schema/context/spring-context.xsd
-    http://mybatis.org/schema/mybatis-spring
-    https://mybatis.org/schema/mybatis-spring.xsd">
+    https://www.springframework.org/schema/context/spring-context.xsd">
 
 
-<context:component-scan base-package="cdu.zjy">
-        <context:exclude-filter type="annotation"
-                                expression="org.springframework.stereotype.Controller"/>
-    </context:component-scan>
+    <context:component-scan base-package="cdu.zjy"/>
 
     <!-- 指定数据源配置文件 -->
     <context:property-placeholder location="classpath:db.properties" ignore-unresolvable="true"/>
 
-    <mybatis:scan base-package="cdu.zjy.dao"/>
+    <!--    <mybatis:scan base-package="cdu.zjy.dao"/>-->
 
     <!-- 配置数据源（数据库连接池） -->
     <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource">
@@ -28,13 +22,6 @@
         <property name="jdbcUrl" value="${datasource.url}"/>
         <property name="username" value="${datasource.username}"/>
         <property name="password" value="${datasource.password}"/>
-        <property name="connectionTimeout" value="${datasource.hikari.connection-timeout}"/>
-        <property name="idleTimeout" value="${datasource.hikari.idle-timeout}"/>
-        <property name="maxLifetime" value="${datasource.hikari.max-lifetime}"/>
-        <property name="maximumPoolSize" value="${datasource.hikari.maximum-pool-size}"/>
-        <property name="minimumIdle" value="${datasource.hikari.minimum-idle}"/>
-        <property name="connectionTestQuery" value="${datasource.hikari.connection-test-query}"/>
-        <property name="autoCommit" value="true"/>
     </bean>
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">

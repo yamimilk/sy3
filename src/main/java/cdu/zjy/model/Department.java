@@ -7,10 +7,10 @@ public class Department implements Serializable {
     private String name;
     private String number;
 
-    public Department( String name, String number) {
-        this.name = name;
-        this.number = number;
-    }
+//    public Department( String name, String number) {
+//        this.name = name;
+//        this.number = number;
+//    }
 
     public String getName() {
         return name;

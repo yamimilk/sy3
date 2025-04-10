@@ -3,18 +3,19 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cdu.zjy.dao.EmployeeDao">
-    <resultMap id="employeeMap" type="cdu.zjy.model.Employee">
-        <result property="number" column="number" jdbcType="VARCHAR"/>
-        <result property="name" column="name" jdbcType="VARCHAR"/>
-        <result property="gender" column="gender" jdbcType="VARCHAR"/>
-        <result property="age" column="age" jdbcType="INTEGER"/>
-    </resultMap>
+<!--    <resultMap id="employeeMap" type="cdu.zjy.model.Employee">-->
+<!--        <result property="number" column="number" jdbcType="VARCHAR"/>-->
+<!--        <result property="name" column="name" jdbcType="VARCHAR"/>-->
+<!--        <result property="gender" column="gender" jdbcType="VARCHAR"/>-->
+<!--        <result property="age" column="age" jdbcType="INTEGER"/>-->
+<!--    </resultMap>-->
 
-    <select id="findAll" resultMap="employeeMap">
-        select * from employee
+<!--    <select id="findAll" resultMap="employeeMap">-->
+    <select id="findAll" resultType="cdu.zjy.model.Employee">
+        select e.id,e.name,e.number,e.gender from employee e
     </select>
 
-    <select id="findByNumber" resultMap="employeeMap">
+    <select id="findByNumber" resultType="cdu.zjy.model.Employee">
         select * from employee where number = #{number}
     </select>
 

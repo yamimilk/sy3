@@ -4,22 +4,17 @@
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
          version="6.0">
 
-    <!--    指定spring配置文件位置-->
+<!--    指定spring配置文件位置-->
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:spring.xml</param-value>
     </context-param>
-
-    <!-- 加载 Spring 容器：加载 spring.xml -->
+<!--    加载spring容器-->
     <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+        <listener-class>org.springframework.web.context.ContextCleanupListener</listener-class>
     </listener>
-    <!--    加载Spring关闭时清理资源的监听器-->
-<!--    <listener>-->
-<!--        <listener-class>org.springframework.web.context.ContextCleanupListener</listener-class>-->
-<!--    </listener>-->
 
-    <!--    配置springMVC的拦截器-->
+<!--    配置springMVC的拦截器-->
     <servlet>
         <servlet-name>dispatcher</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -35,7 +30,7 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
-    <!--    配置解决乱码问题的过滤器-->
+<!--    配置解决乱码问题的过滤器-->
     <filter>
         <filter-name>encoding</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>

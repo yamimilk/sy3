@@ -12,7 +12,7 @@ import java.util.List;
 public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
-    private EmployeeDao employeeDao;
+    EmployeeDao employeeDao;
     @Override
     public List<Employee> findAll() {
         return employeeDao.findAll();
