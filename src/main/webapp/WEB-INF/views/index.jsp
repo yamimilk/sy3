@@ -16,10 +16,48 @@
     </script>
 </head>
 <body>
+<style>
+    #top {
+        position: relative;
+        height: 60px;
+        background-color: #f5f5f5;
+        padding: 10px 20px;
+    }
+
+    #logo {
+        font-size: 24px;
+        font-weight: bold;
+        float: left;
+    }
+
+    #logout-btn {
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    #logout-btn a {
+        color: #333;
+        text-decoration: none;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        padding: 5px 10px;
+        border-radius: 4px;
+        background-color: #eee;
+    }
+
+    #logout-btn a:hover {
+        background-color: #ddd;
+    }
+</style>
 
 <div id="container">
     <div id="top">
         <div id="logo">人事管理系统</div>
+        <div id="logout-btn">
+            <a href="admin/logout">退出登录</a>
+        </div>
     </div>
     <div id="main">
         <div id="left">

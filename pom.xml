@@ -9,14 +9,12 @@
     <version>1.0-SNAPSHOT</version>
     <name>sy3</name>
     <packaging>war</packaging>
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.target>17</maven.compiler.target>
         <maven.compiler.source>17</maven.compiler.source>
         <junit.version>5.10.0</junit.version>
         <slf4j.version>2.0.17</slf4j.version>
-        <log4j.version>2.24.3</log4j.version>
     </properties>
 
     <dependencies>
@@ -135,6 +133,16 @@
             <version>6.2.1</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>6.2.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aspects</artifactId>
+            <version>6.2.1</version>
+        </dependency>
         <!-- ========= 日志门面 ========= -->
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -142,21 +150,13 @@
             <version>${slf4j.version}</version>
         </dependency>
         <!-- ========= 日志配置 ========= -->
-        <!-- Logging implementation (Log4j Core) -->
+        <!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
         <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-            <version>${log4j.version}</version>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.5.18</version>
+            <scope>compile</scope>
         </dependency>
-
-        <!-- SLF4J-to-Log4j bridge -->
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-slf4j2-impl</artifactId>
-            <version>${log4j.version}</version>
-        </dependency>
-
-
         <!-- ========= 测试相关依赖 ========= -->
         <!-- JUnit 5 API 和引擎 -->
         <dependency>
